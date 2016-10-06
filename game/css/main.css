@@ -1,0 +1,144 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1,h2{
+  text-align: center;
+  font-family: monospace;
+}
+.container {
+  margin-bottom: 100px;
+}
+
+.dad-board{
+  width: 450px;
+  height: 450px;
+  margin: 10px auto;
+}
+.dad-row{
+  width: 450px;
+  height: 50px;
+  display: flex;
+}
+
+.dad-row .dad-cell {
+  width: 50px;
+  height: 50px;
+  border-left: 1px solid black;
+  border-top: 1px solid black;
+  line-height: 50px;
+  text-align: center;
+}
+
+.dad-row .dad-cell input {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  outline: none;
+  border: none;
+  display: block;
+  margin: 4px;
+}
+
+.dad-row .dad-cell:last-child{
+  border-right: 1px solid black;
+}
+
+.dad-row:last-child .dad-cell{
+  border-bottom: 1px solid black;
+}
+
+.dad-row:first-child .dad-cell{
+  border-top: 2px solid black;
+}
+.dad-row:last-child .dad-cell{
+  border-bottom: 2px solid black;
+}
+
+.dad-row:nth-child(3n) .dad-cell{
+  border-bottom: 2px solid black;
+}
+
+.dad-row .dad-cell:first-child {
+ border-left: 2px solid black; 
+}
+
+.dad-row .dad-cell:last-child {
+ border-right: 2px solid black; 
+}
+
+.dad-row .dad-cell:nth-child(3n) {
+ border-right: 2px solid black; 
+}
+
+
+input.with-value{
+  background-color: rgba(234,162,89,0.6);
+}
+
+input.conflict{
+  background-color: rgba(235,86,86,0.6) !important;
+}
+
+input.individual-conflict{
+  background-color: rgba(235,86,86,0.6) !important;
+}
+
+input.finished{
+  background-color: rgba(179,234,89,0.6); !important;
+}
+
+.dad-row .dad-cell input.individual-highlight{
+  border: 4px solid #d9534f;
+}
+
+.dad-row .dad-cell input.highlight{
+  border: 4px solid #337ab7;
+}
+
+input[disabled].initial{
+  font-weight: bold;
+  cursor: not-allowed;
+  background-color: #CCCCCC;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.messages{
+  width: 500px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  margin: auto;
+}
+#message{
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.5em;
+}
+
+.controls{
+  width: 500px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+#highlightButtons{
+  width: 500px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+#select-mode{
+  display: inline-block;
+  width: 200px;  
+}
+
+
