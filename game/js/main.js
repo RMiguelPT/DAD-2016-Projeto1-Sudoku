@@ -76,6 +76,10 @@
         cells.blur(function() {
             if($(this).val() > 0 && $(this).val() < 10) {
                 $(this).addClass('with-value');
+                var lineNumber = $(this).attr('data-line');
+                var colNumber = $(this).attr('data-column');
+                console.log('line - '+lineNumber);
+                console.log('Col - '+colNumber);
             }
             else {
                 $(this).removeClass('with-value');
