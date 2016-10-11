@@ -102,7 +102,7 @@
         function newGame() {
             $('input').prop("disabled", false);
             cells.each(function () {
-                $(this).val('').removeClass('with-value');
+                $(this).val('').removeClass();
             });
             //access the API to obtain the board
             callApiRest();
@@ -112,7 +112,7 @@
         
         //Process Board with API REsults
         function processBoard(line, col, value) {
-            iconLoading.toggleClass('invisible');
+
             console.log("Line: " + line + "Col: " + col + "Value: " + value);
             $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true).addClass('initial');
 
@@ -126,6 +126,7 @@
                 console.dir(result);
                 $.each(result, function(index, number){
                     //params (Line  number, column number, cell value)
+                    iconLoading.toggleClass('invisible');
                     processBoard(result[index].line, result[index].column, result[index].value);
                 });
             }
