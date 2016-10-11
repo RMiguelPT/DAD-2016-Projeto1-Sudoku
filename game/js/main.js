@@ -33,6 +33,9 @@
             if($(this).val() > 0 && $(this).val() < 9) {
                 $(this).addClass('with-value');
             }
+            else {
+                $(this).removeClass('with-value');
+            }
         });
 
         //when a cell with a value is doubleclicked adds a red border
