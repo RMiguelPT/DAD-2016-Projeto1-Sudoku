@@ -63,9 +63,6 @@
         }
 
 
-
-
-
         //validates incorrect values on the input cells (deletes incorrect Values)
         cells.keyup(function() {
             if($(this).val() < 1 || $(this).val() > 9 || isNaN($(this).val())) {
@@ -112,7 +109,6 @@
         
         //Process Board with API REsults
         function processBoard(line, col, value) {
-
             console.log("Line: " + line + "Col: " + col + "Value: " + value);
             $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true).addClass('initial');
 
@@ -126,7 +122,7 @@
                 console.dir(result);
                 $.each(result, function(index, number){
                     //params (Line  number, column number, cell value)
-                    iconLoading.toggleClass('invisible');
+                    iconLoading.addClass('invisible');
                     processBoard(result[index].line, result[index].column, result[index].value);
                 });
             }
@@ -134,7 +130,7 @@
 
         //call sudokuAPIRest
         function callApiRest() {
-            iconLoading.toggleClass('invisible');
+            iconLoading.removeClass('invisible');
             var difficulty = $('#select-mode option:selected').val();
             var url = 'http://198.211.118.123:8080/board/';
             url += encodeURI(difficulty);
