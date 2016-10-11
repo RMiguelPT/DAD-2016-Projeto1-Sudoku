@@ -62,7 +62,7 @@
         
         //Processo Board with API REsults
         function processBoard(line, col, value) {
-            $("input[data-column='"+column +"'][data-line='"+line+"']").val(value);
+            $("input[data-column='"+col +"'][data-line='"+line+"']").val(value);
 
         }
 
