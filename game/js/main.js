@@ -28,6 +28,8 @@
         cells.keyup(function() {
             if($(this).val() < 1 || $(this).val() > 9 || isNaN($(this).val())) {
                 $(this).val(' ');
+            }else {
+                parseInt($(this).val());
             }
         });
 
@@ -76,7 +78,7 @@
             }else {
                 console.dir(data);
                 $.each(data, function(index, number){
-                    //primeiro parametro do each é o array, index posicao[0,1,2,3...] , number - elemento
+                    //params (Line  number, column number, cell value)
                     processBoard(data[index].line, data[index].column, data[index].value);
                 });
             }
@@ -86,8 +88,8 @@
 
         //call sudokuAPIRest
         function callApiRest() {
-            var difficulty = $('#select-mode option:selected').text();
-            var url = 'http://198.211.118.123:8080/board/:mode ';
+            var difficulty = $('#select-mode option:selected').val();
+            var url = 'http://198.211.118.123:8080/board/:';
             var searchText = difficulty;
             url += encodeURI(searchText);
             console.log(url);
