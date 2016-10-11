@@ -21,6 +21,7 @@
             projetAuthors();
             //cells.prop("disabled", true);
             //callApiRest();
+            newGame();
 
         }
 
