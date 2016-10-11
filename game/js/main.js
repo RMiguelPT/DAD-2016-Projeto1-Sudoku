@@ -14,6 +14,8 @@
         var newGameBtn = $('#btn-new');
         var highlightBtns = $('#highlightButtons button');
         var timer;
+        var iconLoading = $('#loading');
+
 
 
         //function to initiate de game
@@ -110,6 +112,7 @@
         
         //Process Board with API REsults
         function processBoard(line, col, value) {
+            iconLoading.toggleClass('invisible');
             console.log("Line: " + line + "Col: " + col + "Value: " + value);
             $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true).addClass('initial');
 
@@ -130,6 +133,7 @@
 
         //call sudokuAPIRest
         function callApiRest() {
+            iconLoading.toggleClass('invisible');
             var difficulty = $('#select-mode option:selected').val();
             var url = 'http://198.211.118.123:8080/board/';
             url += encodeURI(difficulty);
