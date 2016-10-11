@@ -27,31 +27,40 @@
 
 
         highlightBtns.click(function () {
-            clearInterval(timer);
-            timer = null;
             highlightCells($(this).text());
         });
 
+        function stopTimer(index){
+            console.log("STOP TIMER");
+            console.log(index);
+            clearInterval(timer);
+            timer = undefined;
+            cells.each(function () {
+                if($(this).val() == index) {
+                    $(this).removeClass('highlight');
+                }
+            });
+        }
+
+
+        function startTimer(index){
+            if(timer == null || timer == undefined) {
+                var st=stopTimer.bind(window, index); // bind do parametro Index a ser usado no callback do setInterval
+                timer = setInterval(st, 5000);
+            }
+        }
 
         function highlightCells(index) {
+            startTimer(index);
             cells.each(function () {
                 if($(this).val() == index) {
                     $(this).addClass('highlight');
                 }
             });
-            if(timer == null || timer == undefined) {
-                timer = setInterval(function () {
-                    cells.each(function () {
-                        if($(this).val() == index) {
-                            $(this).removeClass('highlight');
-                        }
-                    });
-                },5000);
 
-            }
-            clearInterval(timer);
-            timer = null;
         }
+
+
 
 
 
