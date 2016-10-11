@@ -46,19 +46,21 @@
 
 
         function startTimer(index){
-            if(timer == null || timer == undefined) {
+
                 var st=stopTimer.bind(window, index); // bind do parametro Index a ser usado no callback do setInterval
                 timer = setInterval(st, 5000);
-            }
+
         }
 
         function highlightCells(index) {
-            startTimer(index);
-            cells.each(function () {
-                if($(this).val() == index) {
-                    $(this).addClass('highlight');
-                }
-            });
+            if(timer == null || timer == undefined) {
+                startTimer(index);
+                cells.each(function () {
+                    if ($(this).val() == index) {
+                        $(this).addClass('highlight');
+                    }
+                });
+            }
 
         }
 
