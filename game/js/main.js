@@ -17,7 +17,7 @@
         //function to initiate de game
         function init() {
             projetAuthors();
-            cells.prop("disabled", true);
+            //cells.prop("disabled", true);
             //callApiRest();
 
         }
@@ -67,19 +67,20 @@
         
         //Processo Board with API REsults
         function processBoard(line, col, value) {
-            $("input[data-column='"+col +"'][data-line='"+line+"']").val(value);
+            console.log("Line: " + line + "Col: " + col + "Value: " + value);
+            $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true);
 
         }
 
         //process API results
-        function processAPIResults() {
+        function processAPIResults(result) {
             if(result.Response === 'False') {
                 alert('<strong> No Results Found!</strong>');
             }else {
-                console.dir(data);
-                $.each(data, function(index, number){
+                console.dir(result);
+                $.each(result, function(index, number){
                     //params (Line  number, column number, cell value)
-                    processBoard(data[index].line, data[index].column, data[index].value);
+                    processBoard(result[index].line, result[index].column, result[index].value);
                 });
             }
 
