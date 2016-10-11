@@ -102,7 +102,7 @@
         //Process Board with API REsults
         function processBoard(line, col, value) {
             console.log("Line: " + line + "Col: " + col + "Value: " + value);
-            $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true);
+            $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true).addClass('initial');
 
         }
 
