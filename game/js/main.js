@@ -13,10 +13,13 @@
         var checkGameBtn = $('#btn-check'); //check game button
         var newGameBtn = $('#btn-new');
 
+
         //function to initiate de game
         function init() {
             projetAuthors();
             cells.prop("disabled", true);
+            //callApiRest();
+
         }
 
 
@@ -41,7 +44,7 @@
         //when a cell with a value is doubleclicked adds a red border
         cells.dblclick(function() {
             if($(this).val() > 0 && $(this).val() < 9) {
-                $(this).addClass('individual-highlight');
+                $(this).toggleClass('individual-highlight');
             }
         });
 
@@ -54,9 +57,46 @@
 
         function newGame() {
             $('input').prop("disabled", false);
+            //access the API to obtain the board
+            callApiRest();
+        }
+        
+        
+        
+        //Processo Board with API REsults
+        function processBoard(line, col, value) {
+            $("input[data-column='"+col +"'][data-line='"+line+"']").val(value);
 
         }
 
+        //process API results
+        function processAPIResults() {
+            if(result.Response === 'False') {
+                alert('<strong> No Results Found!</strong>');
+            }else {
+                console.dir(data);
+                $.each(data, function(index, number){
+                    //primeiro parametro do each é o array, index posicao[0,1,2,3...] , number - elemento
+                    processBoard(data[index].line, data[index].column, data[index].value);
+                });
+            }
+
+
+        }
+
+        //call sudokuAPIRest
+        function callApiRest() {
+            var difficulty = $('#select-mode option:selected').text();
+            var url = 'http://198.211.118.123:8080/board/:mode ';
+            var searchText = difficulty;
+            url += encodeURI(searchText);
+            console.log(url);
+            $.get(url, processAPIResults);
+        }
+
+
+
+        //
         function projetAuthors() {
             var numbers = $('#authors-section h3');
             var names = $('#authors-section p');
