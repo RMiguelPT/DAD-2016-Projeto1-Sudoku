@@ -149,7 +149,7 @@
         //processes the board to post data to the APIRest
         function processBoard(){
             var gameCells = [];
-            boardInput.each(function(){
+            cells.each(function(){
                 if( $(this).val() != '' || $(this).val() == undefined){ //only sends the cells with values
                     gameCells.push({
                         "line": parseInt($(this).attr('data-line')),
