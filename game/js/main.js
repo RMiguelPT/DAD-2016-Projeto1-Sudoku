@@ -90,18 +90,18 @@
                 //do the animation
                 alert('CORRECT LINE'); //[DEBUG MODE] delete after development
                 var parent = currentLine.parent();
-                parent.delay(10).animate({backgroundColor:'#FFBC14'}, 3000)
-                      .animate({backgroundColor:'#FFFFFF'}, 3000);
+                parent.animate({backgroundColor:'#FFBC14'}, 1500)
+                      .animate({backgroundColor:'#FFFFFF'}, 500);
             }
         }
 
         //checks it the fullfilled column is valid
         function checkColumn(colNumber) {
-            var currentLine = $("input[data-column='"+colNumber+"']");
+            var currentCol = $("input[data-column='"+colNumber+"']");
             var correctValue = 45;
             var soma = 0;
 
-            currentLine.each(function () {
+            currentCol.each(function () {
                 if($(this).val() != '') {
                     soma += parseInt($(this).val());
                 }
@@ -110,6 +110,9 @@
             if(soma === correctValue) {
                 //do the animation
                 alert('CORRECT COLUMN');//[DEBUG MODE] delete after development
+                var parent = currentCol.parent();
+                parent.animate({backgroundColor:'#FFBC14'}, 1500)
+                    .animate({backgroundColor:'#FFFFFF'}, 500);
             }
         }
 
