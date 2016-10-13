@@ -147,7 +147,7 @@
 
 
         //processes the board to post data to the APIRest
-        function processBoard(){
+        function processBoardToSend(){
             var gameCells = [];
             cells.each(function(){
                 if( $(this).val() != '' || $(this).val() == undefined){ //only sends the cells with values
@@ -177,7 +177,7 @@
 
         //button to check the game conflicts
         checkGameBtn.on('click', function(){
-            var data = processBoard();
+            var data = processBoardToSend();
             $.ajax({
                 type: 'POST',
                 url: 'http://198.211.118.123:8080/board/check',
