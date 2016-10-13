@@ -90,8 +90,15 @@
                 //do the animation
                 alert('CORRECT LINE'); //[DEBUG MODE] delete after development
                 var parent = currentLine.parent();
-                parent.animate({backgroundColor:'#FFBC14'}, 1500)
-                      .animate({backgroundColor:'#FFFFFF'}, 500);
+                parent.each(function(){
+                    $(this).animate({
+                        backgroundColor:'#FFBC14'
+                    },1500).animate({
+                        backgroundColor:'#FFFFFF'
+                    },500);
+
+                });
+
             }
         }
 
@@ -131,6 +138,15 @@
             if(soma === correctValue) {
                 //do the animation
                 alert('CORRECT SQUARE');//[DEBUG MODE] delete after development
+                var parent = square.parent();
+                parent.each(function(){
+                    $(this).animate({
+                        backgroundColor:'#FFBC14'
+                    },1500).animate({
+                        backgroundColor:'#FFFFFF'
+                    },500);
+
+                });
             }
         }
 
