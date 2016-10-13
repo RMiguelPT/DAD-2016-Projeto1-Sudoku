@@ -99,6 +99,25 @@
             }
         }
 
+        //checks it the fullfilled column is valid
+        function checkSquare(squareNumber) {
+            var square = $("input[square='"+squareNumber+"']");
+            var correctValue = 45;
+            var soma = 0;
+
+            square.each(function () {
+                if($(this).val() != '') {
+                    soma += parseInt($(this).val());
+                }
+            });
+
+            if(soma === correctValue) {
+                //do the animation
+                alert('CORRECT SQUARE');//[DEBUG MODE] delete after development
+            }
+        }
+
+
 
         //adds the bakcground to a cell with value
         cells.blur(function() {
@@ -106,10 +125,14 @@
                 $(this).addClass('with-value');
                 var lineNumber = $(this).attr('data-line');
                 var colNumber = $(this).attr('data-column');
+                var squareNumber = $(this).attr('square');
+
                 console.log('line - '+lineNumber);//[DEBUG MODE] delete after development
                 console.log('Col - '+colNumber);//[DEBUG MODE] delete after development
+                console.log('Square -' + squareNumber);
                 checkLine(lineNumber);
                 checkColumn(colNumber);
+                checkSquare(squareNumber);
             }
             else {
                 $(this).removeClass('with-value');
@@ -253,8 +276,9 @@
             rows.each(function () {
                 console.log('ROW' + currentRow);
 
-                if(currentRow < 3) {
-                    var cells = $(this).elements('input');
+                if(currentRow < 4) {
+
+                    var cells = $('input', this);
                     cells.each(function () {
                         var col = $(this).attr('data-column');
                         if( (col+1) % 3 == 0) {
@@ -268,9 +292,9 @@
                             $(this).attr('square', quadrante);
                         }
                     });
-                } else if(currentRow < 6) {
+                } else if(currentRow < 7) {
                     quadrante = 4;
-                    var cells = $(this).elements('input');
+                    var cells = $('input', this);
                     cells.each(function () {
                         var col = $(this).attr('data-column');
                         if( (col+1) % 3 == 0) {
@@ -286,7 +310,7 @@
                     });
                 }else {
                     quadrante = 7;
-                    var cells = $(this).elements('input');
+                    var cells = $('input', this);
                     cells.each(function () {
                         var col = $(this).attr('data-column');
                         if( (col+1) % 3 == 0) {
