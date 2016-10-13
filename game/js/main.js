@@ -146,6 +146,62 @@
 
 
 
+        //processes the board to post data to the APIRest
+        function processBoard(){
+            var gameCells = [];
+            boardInput.each(function(){
+                if( $(this).val() != '' || $(this).val() == undefined){ //only sends the cells with values
+                    gameCells.push({
+                        "line": parseInt($(this).attr('data-line')),
+                        "column": parseInt($(this).attr('data-column')),
+                        "value": $(this).val(),
+                        "fixed": $(this).prop('disabled')
+                    });
+                }
+
+            });
+            return gameCells;
+        }
+
+        //processes the conflicts on the game board
+        function manageConflicts(lineConflicts, columnConflicts) {
+            var conflictCell = $("input[data-column='" + columnConflicts +"'][data-line='" + lineConflicts + "']");
+
+            conflictCell.addClass('conflict');
+            setTimeout(function () {
+                    conflictCell.removeClass('conflict');
+            },5000);
+
+
+        }
+
+        //button to check the game conflicts
+        checkGameBtn.on('click', function(){
+            var data = processBoard();
+            $.ajax({
+                type: 'POST',
+                url: 'http://198.211.118.123:8080/board/check',
+                data: JSON.stringify(processBoard()),
+                contentType: 'application/json'
+
+            })
+                .done(function(data){
+
+                    if(data.finished){
+                        alert('*** WINNER - GAME OVER ***');
+                    }
+                    $.each(data.conflicts ,function(index){
+                        manageConflicts(data.conflicts[index].line, data.conflicts[index].column);
+                    })
+                })
+                .fail(function () {
+                    alert('ERROR FINISHING THE GAME');
+                })
+                .always(function(){
+                });
+        });
+
+
         //
         function projetAuthors() {
             var numbers = $('#authors-section h3');
