@@ -16,11 +16,7 @@
         var timer;
         var iconLoading = $('#loading');
 
-        //function to initiate de game
-        function init() {
-            projetAuthors();
-            newGame();
-        }
+
 
 
         highlightBtns.click(function () {
@@ -246,6 +242,74 @@
 
             //hides the 4th member of the team
             divs.eq(3).addClass('hidden');
+        }
+
+        function setQuadrante() {
+            var quadrante = 1;
+            var rows = $('.dad-row');
+            var currentRow = 1;
+
+
+            rows.each(function () {
+                console.log('ROW' + currentRow);
+
+                if(currentRow < 3) {
+                    var cells = $(this).elements('input');
+                    cells.each(function () {
+                        var col = $(this).attr('data-column');
+                        if( (col+1) % 3 == 0) {
+                            $(this).attr('square', quadrante);
+                            quadrante++;
+
+                            if(($(this).attr('data-column') == 8)){
+                                quadrante = 1;
+                            }
+                        }else {
+                            $(this).attr('square', quadrante);
+                        }
+                    });
+                } else if(currentRow < 6) {
+                    quadrante = 4;
+                    var cells = $(this).elements('input');
+                    cells.each(function () {
+                        var col = $(this).attr('data-column');
+                        if( (col+1) % 3 == 0) {
+                            $(this).attr('square', quadrante);
+                            quadrante++;
+
+                            if(($(this).attr('data-column') == 8)){
+                                quadrante = 4;
+                            }
+                        }else {
+                            $(this).attr('square', quadrante);
+                        }
+                    });
+                }else {
+                    quadrante = 7;
+                    var cells = $(this).elements('input');
+                    cells.each(function () {
+                        var col = $(this).attr('data-column');
+                        if( (col+1) % 3 == 0) {
+                            $(this).attr('square', quadrante);
+                            quadrante++;
+
+                            if(($(this).attr('data-column') == 8)){
+                                quadrante = 7;
+                            }
+                        }else {
+                            $(this).attr('square', quadrante);
+                        }
+                    });
+                }
+                currentRow++;
+            });
+        }
+
+        //function to initiate de game
+        function init() {
+            projetAuthors();
+            newGame();
+            setQuadrante();
         }
 
         init();
