@@ -16,15 +16,10 @@
         var timer;
         var iconLoading = $('#loading');
 
-
-
         //function to initiate de game
         function init() {
             projetAuthors();
-            //cells.prop("disabled", true);
-            //callApiRest();
             newGame();
-
         }
 
 
@@ -46,10 +41,8 @@
 
 
         function startTimer(index){
-
                 var st=stopTimer.bind(window, index); // bind do parametro Index a ser usado no callback do setInterval
                 timer = setInterval(st, 5000);
-
         }
 
         function highlightCells(index) {
@@ -61,7 +54,6 @@
                     }
                 });
             }
-
         }
 
 
@@ -75,6 +67,7 @@
         });
 
 
+        //checks it the fullfilled line is valid
         function checkLine(lineNumber) {
             var currentLine = $("input[data-line='"+lineNumber+"']");
             var correctValue = 45;
@@ -84,15 +77,15 @@
                 if($(this).val() != '') {
                     soma += parseInt($(this).val());
                 }
-
             });
 
             if(soma === correctValue) {
                 //do the animation
-                alert('CORRECT LINE');
+                alert('CORRECT LINE'); //[DEBUG MODE] delete after development
             }
         }
 
+        //checks it the fullfilled column is valid
         function checkColumn(colNumber) {
             var currentLine = $("input[data-column='"+colNumber+"']");
             var correctValue = 45;
@@ -102,12 +95,11 @@
                 if($(this).val() != '') {
                     soma += parseInt($(this).val());
                 }
-
             });
 
             if(soma === correctValue) {
                 //do the animation
-                alert('CORRECT COLUMN');
+                alert('CORRECT COLUMN');//[DEBUG MODE] delete after development
             }
         }
 
@@ -157,7 +149,6 @@
         function processBoard(line, col, value) {
             console.log("Line: " + line + "Col: " + col + "Value: " + value);//[DEBUG MODE] delete after development
             $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true).addClass('initial');
-
         }
 
         //process API results
@@ -185,7 +176,6 @@
         }
 
 
-
         //processes the board to post data to the APIRest
         function processBoardToSend(){
             var gameCells = [];
@@ -198,7 +188,6 @@
                         "fixed": $(this).prop('disabled')
                     });
                 }
-
             });
             return gameCells;
         }
@@ -211,8 +200,6 @@
             setTimeout(function () {
                     conflictCell.removeClass('conflict');
             },5000);
-
-
         }
 
         //button to check the game conflicts
@@ -228,11 +215,13 @@
 
                     if(data.finished){
                         alert('*** WINNER - GAME OVER ***');
+                        //put all the board cells green and display the winning window with data
 
+                    }else {
+                        $.each(data.conflicts ,function(index){
+                            manageConflicts(data.conflicts[index].line, data.conflicts[index].column);
+                        });
                     }
-                    $.each(data.conflicts ,function(index){
-                        manageConflicts(data.conflicts[index].line, data.conflicts[index].column);
-                    })
                 })
                 .fail(function () {
                     alert('ERROR FINISHING THE GAME');
@@ -242,7 +231,7 @@
         });
 
 
-        //
+        //changes the project authors data in the html page
         function projetAuthors() {
             var numbers = $('#authors-section h3');
             var names = $('#authors-section p');
@@ -258,7 +247,6 @@
             //hides the 4th member of the team
             divs.eq(3).addClass('hidden');
         }
-
 
         init();
     });
