@@ -74,6 +74,44 @@
             }
         });
 
+
+        function checkLine(lineNumber) {
+            var currentLine = $("input[data-line='"+lineNumber+"']");
+            var correctValue = 45;
+            var soma = 0;
+
+            currentLine.each(function () {
+                if($(this).val() != '') {
+                    soma += parseInt($(this).val());
+                }
+
+            });
+
+            if(soma === correctValue) {
+                //do the animation
+                alert('CORRECT LINE');
+            }
+        }
+
+        function checkColumn(colNumber) {
+            var currentLine = $("input[data-column='"+colNumber+"']");
+            var correctValue = 45;
+            var soma = 0;
+
+            currentLine.each(function () {
+                if($(this).val() != '') {
+                    soma += parseInt($(this).val());
+                }
+
+            });
+
+            if(soma === correctValue) {
+                //do the animation
+                alert('CORRECT COLUMN');
+            }
+        }
+
+
         //adds the bakcground to a cell with value
         cells.blur(function() {
             if($(this).val() > 0 && $(this).val() < 10) {
@@ -82,6 +120,8 @@
                 var colNumber = $(this).attr('data-column');
                 console.log('line - '+lineNumber);//[DEBUG MODE] delete after development
                 console.log('Col - '+colNumber);//[DEBUG MODE] delete after development
+                checkLine(lineNumber);
+                checkColumn(colNumber);
             }
             else {
                 $(this).removeClass('with-value');
@@ -188,6 +228,7 @@
 
                     if(data.finished){
                         alert('*** WINNER - GAME OVER ***');
+
                     }
                     $.each(data.conflicts ,function(index){
                         manageConflicts(data.conflicts[index].line, data.conflicts[index].column);
