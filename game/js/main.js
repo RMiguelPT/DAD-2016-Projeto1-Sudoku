@@ -23,33 +23,44 @@
             highlightCells($(this).text());
         });
 
-        function stopTimer(index){
+        function stopTimer(){
             console.log("STOP TIMER");//[DEBUG MODE] delete after development
-            console.log(index);//[DEBUG MODE] delete after development
+            //console.log(index);//[DEBUG MODE] delete after development
             clearInterval(timer);
             timer = undefined;
+
+        }
+
+        function deHightlight() {
+            stopTimer();
             cells.each(function () {
-                if($(this).val() == index) {
+                if($(this).hasClass('highlight')) {
                     $(this).removeClass('highlight');
                 }
             });
         }
 
 
-        function startTimer(index){
-                var st=stopTimer.bind(window, index); // bind do parametro Index a ser usado no callback do setInterval
-                timer = setInterval(st, 5000);
+        function startTimer(){
+            timer = setInterval(deHightlight, 5000);
         }
 
         function highlightCells(index) {
             if(timer == null || timer == undefined) {
-                startTimer(index);
-                cells.each(function () {
-                    if ($(this).val() == index) {
-                        $(this).addClass('highlight');
-                    }
-                });
+                setBlueBorderHightlight(index);
             }
+            else{
+                deHightlight();
+                setBlueBorderHightlight(index);
+            }
+        }
+        function setBlueBorderHightlight(index) {
+            startTimer(index);
+            cells.each(function () {
+                if ($(this).val() == index) {
+                    $(this).addClass('highlight');
+                }
+            });
         }
 
 
