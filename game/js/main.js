@@ -11,7 +11,7 @@
         //Global variables
         var cells = $('input'); //gets all the inputs
         var checkGameBtn = $('#btn-check'); //check game button
-        var newGameBtn = $('#btn-new');
+        var newGameBtn = $('#btn-new'); //newgame button
         var highlightBtns = $('#highlightButtons button');
         var timer;
         var iconLoading = $('#loading');
@@ -33,8 +33,8 @@
         });
 
         function stopTimer(index){
-            console.log("STOP TIMER");
-            console.log(index);
+            console.log("STOP TIMER");//[DEBUG MODE] delete after development
+            console.log(index);//[DEBUG MODE] delete after development
             clearInterval(timer);
             timer = undefined;
             cells.each(function () {
@@ -80,8 +80,8 @@
                 $(this).addClass('with-value');
                 var lineNumber = $(this).attr('data-line');
                 var colNumber = $(this).attr('data-column');
-                console.log('line - '+lineNumber);
-                console.log('Col - '+colNumber);
+                console.log('line - '+lineNumber);//[DEBUG MODE] delete after development
+                console.log('Col - '+colNumber);//[DEBUG MODE] delete after development
             }
             else {
                 $(this).removeClass('with-value');
@@ -115,7 +115,7 @@
         
         //Process Board with API REsults
         function processBoard(line, col, value) {
-            console.log("Line: " + line + "Col: " + col + "Value: " + value);
+            console.log("Line: " + line + "Col: " + col + "Value: " + value);//[DEBUG MODE] delete after development
             $("input[data-column='"+col +"'][data-line='"+line+"']").val(value).prop("disabled", true).addClass('initial');
 
         }
@@ -125,7 +125,7 @@
             if(result.Response === 'False') {
                 alert('<strong> No Results Found!</strong>');
             }else {
-                console.dir(result);
+                console.dir(result);//[DEBUG MODE] delete after development
                 $.each(result, function(index, number){
                     //params (Line  number, column number, cell value)
                     iconLoading.addClass('invisible');
@@ -134,13 +134,13 @@
             }
         }
 
-        //call sudokuAPIRest
+        //call sudokuAPIRest GET BOARD
         function callApiRest() {
             iconLoading.removeClass('invisible');
             var difficulty = $('#select-mode option:selected').val();
             var url = 'http://198.211.118.123:8080/board/';
             url += encodeURI(difficulty);
-            console.log(url);
+            console.log(url);//[DEBUG MODE] delete after development
             $.get(url, processAPIResults);
         }
 
