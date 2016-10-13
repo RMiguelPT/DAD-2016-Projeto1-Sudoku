@@ -89,6 +89,9 @@
             if(soma === correctValue) {
                 //do the animation
                 alert('CORRECT LINE'); //[DEBUG MODE] delete after development
+                var parent = currentLine.parent();
+                parent.delay(10).animate({backgroundColor:'#FFBC14'}, 3000)
+                      .animate({backgroundColor:'#FFFFFF'}, 3000);
             }
         }
 
@@ -282,7 +285,6 @@
             var quadrante = 1;
             var rows = $('.dad-row');
             var currentRow = 1;
-
 
             rows.each(function () {
                 console.log('ROW' + currentRow);
