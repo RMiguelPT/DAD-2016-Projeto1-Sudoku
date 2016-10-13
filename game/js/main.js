@@ -15,6 +15,7 @@
         var highlightBtns = $('#highlightButtons button');
         var timer;
         var iconLoading = $('#loading');
+        var startTime = 0;
 
 
 
@@ -22,6 +23,39 @@
         highlightBtns.click(function () {
             highlightCells($(this).text());
         });
+
+        //http://stackoverflow.com/questions/9763441/milliseconds-to-time-in-javascript
+        function msToTime(s) {
+            var ms = s % 1000;
+            s = (s - ms) / 1000;
+            var secs = s % 60;
+            s = (s - secs) / 60;
+            var mins = s % 60;
+            var hrs = (s - mins) / 60;
+
+            return hrs + ':' + mins + ':' + secs;
+        }
+
+        function showDialog() {
+
+            $( "#dialog" ).dialog({ autoOpen: false,
+                buttons: [
+                    {
+                        text: "OK",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
+                    }
+                ]});
+
+            var endTime = $.now();
+            var elapsedMillis = endTime - startTime;
+            var elapsedTime = msToTime(elapsedMillis);
+
+            $("#message").text("Game Won, \n Congratulations!!");
+            $("#time").text("Time: " + elapsedTime);
+            $( "#dialog" ).dialog( "open" );
+        }
 
         function stopTimer(){
             console.log("STOP TIMER");//[DEBUG MODE] delete after development
@@ -193,6 +227,8 @@
             });
             //access the API to obtain the board
             callApiRest();
+            //Set start Time
+            startTime = $.now();
         }
         
         
@@ -221,8 +257,9 @@
         function callApiRest() {
             iconLoading.removeClass('invisible');
             var difficulty = $('#select-mode option:selected').val();
-            var url = 'http://198.211.118.123:8080/board/';
-            url += encodeURI(difficulty);
+            //var url = 'http://198.211.118.123:8080/board/';
+            var url = 'http://198.211.118.123:8080/test';
+            //url += encodeURI(difficulty);
             console.log(url);//[DEBUG MODE] delete after development
             $.get(url, processAPIResults);
         }
@@ -268,7 +305,11 @@
                     if(data.finished){
                         alert('*** WINNER - GAME OVER ***');
                         //put all the board cells green and display the winning window with data
+                        cells.each(function () {
+                            $(this).addClass("finished");
+                        });
 
+                        showDialog();
                     }else {
                         $.each(data.conflicts ,function(index){
                             manageConflicts(data.conflicts[index].line, data.conflicts[index].column);
@@ -313,7 +354,7 @@
                     var cells = $('input', this);
                     cells.each(function () {
                         var col = $(this).attr('data-column');
-                        if( (col+1) % 3 == 0) {
+                        if( Math.floor((col+1) % 3) == 0) {
                             $(this).attr('square', quadrante);
                             quadrante++;
 
@@ -329,7 +370,7 @@
                     var cells = $('input', this);
                     cells.each(function () {
                         var col = $(this).attr('data-column');
-                        if( (col+1) % 3 == 0) {
+                        if( Math.floor((col+1) % 3) == 0) {
                             $(this).attr('square', quadrante);
                             quadrante++;
 
@@ -345,7 +386,7 @@
                     var cells = $('input', this);
                     cells.each(function () {
                         var col = $(this).attr('data-column');
-                        if( (col+1) % 3 == 0) {
+                        if( Math.floor((col+1) % 3) == 0) {
                             $(this).attr('square', quadrante);
                             quadrante++;
 
