@@ -177,11 +177,10 @@
 
         //button to check the game conflicts
         checkGameBtn.on('click', function(){
-            var data = processBoardToSend();
             $.ajax({
                 type: 'POST',
                 url: 'http://198.211.118.123:8080/board/check',
-                data: JSON.stringify(processBoard()),
+                data: JSON.stringify(processBoardToSend()),
                 contentType: 'application/json'
 
             })
