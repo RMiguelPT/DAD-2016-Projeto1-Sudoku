@@ -112,6 +112,23 @@
             }
         });
 
+        function animateCells(parent) {
+            $.each(parent, function (i, el) {
+                //$(el).css("{background-color: red}");
+                setTimeout(function(){
+                    $(el).animate({
+                        backgroundColor:'#FFBC14'
+
+                    }, 500);
+                },100 + ( i * 100 ));
+                setTimeout(function(){
+                    $(el).animate({
+                        backgroundColor:'#FFFFFF'
+                    }, 500);
+                },100 + ( i * 100 ));
+            });
+        }
+
 
         //checks it the fullfilled line is valid
         function checkLine(lineNumber) {
@@ -127,14 +144,9 @@
 
             if(soma === correctValue) {
                 var parent = currentLine.parent();
-                parent.each(function(){
-                    $(this).animate({
-                        backgroundColor:'#FFBC14'
-                    },1500).animate({
-                        backgroundColor:'#FFFFFF'
-                    },500);
+                animateCells(parent);
 
-                });
+
             }
         }
 
@@ -152,8 +164,7 @@
 
             if(soma === correctValue) {
                 var parent = currentCol.parent();
-                parent.animate({backgroundColor:'#FFBC14'}, 1500)
-                      .animate({backgroundColor:'#FFFFFF'}, 500);
+                animateCells(parent);
             }
         }
 
@@ -171,13 +182,7 @@
 
             if(soma === correctValue) {
                 var parent = square.parent();
-                parent.each(function(){
-                    $(this).animate({
-                        backgroundColor:'#FFBC14'
-                    },1500).animate({
-                        backgroundColor:'#FFFFFF'
-                    },500);
-                });
+                animateCells(parent);
             }
         }
 
@@ -254,9 +259,9 @@
         function callApiRest() {
             iconLoading.removeClass('invisible');
             var difficulty = $('#select-mode option:selected').val();
-            var url = 'http://198.211.118.123:8080/board/';
-            //var url = 'http://198.211.118.123:8080/test';
-            url += encodeURI(difficulty);
+            //var url = 'http://198.211.118.123:8080/board/';
+            var url = 'http://198.211.118.123:8080/test';
+            //url += encodeURI(difficulty);
             console.log(url);//[DEBUG MODE] delete after development
             $.get(url, processAPIResults);
         }
