@@ -230,9 +230,9 @@
             //Set start Time
             startTime = $.now();
         }
-        
-        
-        
+
+
+
         //Process Board with API REsults
         function processBoard(line, col, value) {
             console.log("Line: " + line + "Col: " + col + "Value: " + value);//[DEBUG MODE] delete after development
@@ -245,7 +245,7 @@
                 alert('<strong> No Results Found!</strong>');
             }else {
                 console.dir(result);//[DEBUG MODE] delete after development
-                $.each(result, function(index, number){
+                $.each(result, function(index){
                     //params (Line  number, column number, cell value)
                     iconLoading.addClass('invisible');
                     processBoard(result[index].line, result[index].column, result[index].value);
@@ -257,9 +257,9 @@
         function callApiRest() {
             iconLoading.removeClass('invisible');
             var difficulty = $('#select-mode option:selected').val();
-            //var url = 'http://198.211.118.123:8080/board/';
-            var url = 'http://198.211.118.123:8080/test';
-            //url += encodeURI(difficulty);
+            var url = 'http://198.211.118.123:8080/board/';
+            //var url = 'http://198.211.118.123:8080/test';
+            url += encodeURI(difficulty);
             console.log(url);//[DEBUG MODE] delete after development
             $.get(url, processAPIResults);
         }
@@ -308,8 +308,8 @@
                         cells.each(function () {
                             $(this).addClass("finished");
                         });
-
                         showDialog();
+
                     }else {
                         $.each(data.conflicts ,function(index){
                             manageConflicts(data.conflicts[index].line, data.conflicts[index].column);

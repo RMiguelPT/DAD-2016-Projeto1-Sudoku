@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e079c07-1190-4f44-a8d2-d2287e2f8666" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/game/js/main.js" afterPath="$PROJECT_DIR$/game/js/main.js" />
     </list>
     <ignored path="DAD-2016-Projeto1-Sudoku.iws" />
@@ -26,8 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/game/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="511">
-              <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+            <state relative-caret-position="273">
+              <caret line="260" column="14" selection-start-line="260" selection-start-column="14" selection-end-line="260" selection-end-column="14" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -246,12 +247,12 @@
       <workItem from="1476188440726" duration="8199000" />
       <workItem from="1476198962066" duration="861000" />
       <workItem from="1476344143880" duration="15474000" />
-      <workItem from="1476387041293" duration="5291000" />
+      <workItem from="1476387041293" duration="6753000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41782000" />
+    <option name="totallyTimeSpent" value="43244000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1055" extended-state="0" />
@@ -461,8 +462,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="511">
-          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+        <state relative-caret-position="273">
+          <caret line="260" column="14" selection-start-line="260" selection-start-column="14" selection-end-line="260" selection-end-column="14" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
