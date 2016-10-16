@@ -19,7 +19,7 @@
 
 
 
-
+        //sends the button text to the function highlightCells
         highlightBtns.click(function () {
             highlightCells($(this).text());
         });
@@ -36,8 +36,8 @@
             return hrs + ':' + mins + ':' + secs;
         }
 
+        //Calls the winner dialog box
         function showDialog() {
-
             $( "#dialog" ).dialog({ autoOpen: false,
                 buttons: [
                     {
@@ -57,6 +57,7 @@
             $( "#dialog" ).dialog( "open" );
         }
 
+        //stops the timer
         function stopTimer(){
             console.log("STOP TIMER");//[DEBUG MODE] delete after development
             //console.log(index);//[DEBUG MODE] delete after development
@@ -65,6 +66,7 @@
 
         }
 
+        //removes the cell border
         function deHightlight() {
             stopTimer();
             cells.each(function () {
@@ -74,11 +76,12 @@
             });
         }
 
-
+        //starts the timer
         function startTimer(){
             timer = setInterval(deHightlight, 5000);
         }
 
+        //either inserts cell border or removes it according there's an active timer
         function highlightCells(index) {
             if(timer == null || timer == undefined) {
                 setBlueBorderHightlight(index);
@@ -88,6 +91,8 @@
                 setBlueBorderHightlight(index);
             }
         }
+
+        //inserts blue cell border
         function setBlueBorderHightlight(index) {
             startTimer(index);
             cells.each(function () {
@@ -107,6 +112,23 @@
             }
         });
 
+        function animateCells(parent) {
+            $.each(parent, function (i, el) {
+                //$(el).css("{background-color: red}");
+                setTimeout(function(){
+                    $(el).animate({
+                        backgroundColor:'#FFBC14'
+
+                    }, 500);
+                },100 + ( i * 100 ));
+                setTimeout(function(){
+                    $(el).animate({
+                        backgroundColor:'#FFFFFF'
+                    }, 500);
+                },100 + ( i * 100 ));
+            });
+        }
+
 
         //checks it the fullfilled line is valid
         function checkLine(lineNumber) {
@@ -121,17 +143,9 @@
             });
 
             if(soma === correctValue) {
-                //do the animation
-                alert('CORRECT LINE'); //[DEBUG MODE] delete after development
                 var parent = currentLine.parent();
-                parent.each(function(){
-                    $(this).animate({
-                        backgroundColor:'#FFBC14'
-                    },1500).animate({
-                        backgroundColor:'#FFFFFF'
-                    },500);
+                animateCells(parent);
 
-                });
 
             }
         }
@@ -149,11 +163,8 @@
             });
 
             if(soma === correctValue) {
-                //do the animation
-                alert('CORRECT COLUMN');//[DEBUG MODE] delete after development
                 var parent = currentCol.parent();
-                parent.animate({backgroundColor:'#FFBC14'}, 1500)
-                    .animate({backgroundColor:'#FFFFFF'}, 500);
+                animateCells(parent);
             }
         }
 
@@ -170,24 +181,15 @@
             });
 
             if(soma === correctValue) {
-                //do the animation
-                alert('CORRECT SQUARE');//[DEBUG MODE] delete after development
                 var parent = square.parent();
-                parent.each(function(){
-                    $(this).animate({
-                        backgroundColor:'#FFBC14'
-                    },1500).animate({
-                        backgroundColor:'#FFFFFF'
-                    },500);
-
-                });
+                animateCells(parent);
             }
         }
 
 
 
         //adds the bakcground to a cell with value
-        cells.blur(function() {
+        cells.change(function() {
             if($(this).val() > 0 && $(this).val() < 10) {
                 $(this).addClass('with-value');
                 var lineNumber = $(this).attr('data-line');
