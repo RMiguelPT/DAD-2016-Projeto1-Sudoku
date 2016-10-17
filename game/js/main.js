@@ -130,7 +130,7 @@
         }
 
 
-        //checks it the fullfilled line is valid
+        //checks if the fullfilled line is valid
         function checkLine(lineNumber) {
             var currentLine = $("input[data-line='"+lineNumber+"']");
             var correctValue = 45;
@@ -150,7 +150,7 @@
             }
         }
 
-        //checks it the fullfilled column is valid
+        //checks if the fullfilled column is valid
         function checkColumn(colNumber) {
             var currentCol = $("input[data-column='"+colNumber+"']");
             var correctValue = 45;
@@ -168,7 +168,7 @@
             }
         }
 
-        //checks it the fullfilled column is valid
+        //checks if the fullfilled column is valid
         function checkSquare(squareNumber) {
             var square = $("input[square='"+squareNumber+"']");
             var correctValue = 45;
