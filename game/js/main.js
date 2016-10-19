@@ -9,7 +9,7 @@
     $(document).ready(function () {
 
         //Global variables
-        var cells = $('input'); //gets all the inputs
+        var cells = $('.dad-board input'); //gets all the inputs
         var checkGameBtn = $('#btn-check'); //check game button
         var newGameBtn = $('#btn-new'); //newgame button
         var highlightBtns = $('#highlightButtons button');
@@ -107,7 +107,8 @@
             if($(this).val() < 1 || $(this).val() > 9 || isNaN($(this).val())) {
                 $(this).val(' ');
                 $(this).removeClass('with-value');
-            }else {
+            }else  {
+                $(this).addClass('with-value');
                 parseInt($(this).val());
             }
         });
@@ -143,6 +144,8 @@
                     lineValues.push($(this).val());
                 }
             });
+
+            console.log("Line Values" + lineValues); //[DEBUG MODE] delete after development
 
             if(lineValues.length == 9) {
                 for ( var i = 0; i < lineValues.length; i++ ) {
@@ -183,6 +186,8 @@
                     colValues.push($(this).val());
                 }
             });
+
+            console.log("col Values" + colValues); //[DEBUG MODE] delete after development
 
             if(colValues.length == 9) {
                 for ( var i = 0; i < colValues.length; i++ ) {
