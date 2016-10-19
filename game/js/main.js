@@ -280,7 +280,7 @@
 
         //when a cell with a value is doubleclicked adds a red border
         cells.dblclick(function() {
-            if($(this).val() > 0 && $(this).val() < 9) {
+            if($(this).val() > 0 && $(this).val() < 10) {
                 $(this).toggleClass('individual-highlight');
             }
         });
