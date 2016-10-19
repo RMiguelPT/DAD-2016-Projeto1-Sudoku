@@ -268,7 +268,7 @@
 
                 console.log('line - '+lineNumber);//[DEBUG MODE] delete after development
                 console.log('Col - '+colNumber);//[DEBUG MODE] delete after development
-                console.log('Square -' + squareNumber);
+                console.log('Square -' + squareNumber);//[DEBUG MODE] delete after development
                 checkLine(lineNumber);
                 checkColumn(colNumber);
                 checkSquare(squareNumber);
