@@ -18,7 +18,6 @@
         var startTime = 0;
 
 
-
         //sends the button text to the function highlightCells
         highlightBtns.click(function () {
             highlightCells($(this).text());
@@ -107,6 +106,7 @@
         cells.keyup(function() {
             if($(this).val() < 1 || $(this).val() > 9 || isNaN($(this).val())) {
                 $(this).val(' ');
+                $(this).removeClass('with-value');
             }else {
                 parseInt($(this).val());
             }
@@ -133,54 +133,119 @@
         //checks if the fullfilled line is valid
         function checkLine(lineNumber) {
             var currentLine = $("input[data-line='"+lineNumber+"']");
-            var correctValue = 45;
-            var soma = 0;
+            var lineValues = [];
+            var validator = [1,2,3,4,5,6,7,8,9];
+            var matches =[];
+            var valid =  false;
 
             currentLine.each(function () {
                 if($(this).val() != '') {
-                    soma += parseInt($(this).val());
+                    lineValues.push($(this).val());
                 }
             });
 
-            if(soma === correctValue) {
+            if(lineValues.length == 9) {
+                for ( var i = 0; i < lineValues.length; i++ ) {
+                    console.log("line value" + lineValues[i]);//[DEBUG MODE] delete after development
+                    for ( var e = 0; e < validator.length; e++ ) {
+                        console.log("validator value" + validator[e]);//[DEBUG MODE] delete after development
+                        if ( parseInt(lineValues[i]) === parseInt(validator[e]) ) {
+                            matches.push(lineValues[i]);
+                            console.log("Matches" + matches);//[DEBUG MODE] delete after development
+                            console.log("Validator" + validator);//[DEBUG MODE] delete after development
+                        }
+                    }
+                }
+            }
+
+
+            if(matches.sort().join(',') == validator.sort().join(',')){
+                console.log('same members');//[DEBUG MODE] delete after development
+                valid = true;
+            }
+
+            if(valid === true) {
                 var parent = currentLine.parent();
                 animateCells(parent);
-
-
             }
         }
 
         //checks if the fullfilled column is valid
         function checkColumn(colNumber) {
             var currentCol = $("input[data-column='"+colNumber+"']");
-            var correctValue = 45;
-            var soma = 0;
+            var colValues = [];
+            var validator = [1,2,3,4,5,6,7,8,9];
+            var matches =[];
+            var valid =  false;
 
             currentCol.each(function () {
                 if($(this).val() != '') {
-                    soma += parseInt($(this).val());
+                    colValues.push($(this).val());
                 }
             });
 
-            if(soma === correctValue) {
+            if(colValues.length == 9) {
+                for ( var i = 0; i < colValues.length; i++ ) {
+                    console.log("line value" + colValues[i]);//[DEBUG MODE] delete after development
+                    for ( var e = 0; e < validator.length; e++ ) {
+                        console.log("validator value" + validator[e]);//[DEBUG MODE] delete after development
+                        if ( parseInt(colValues[i]) === parseInt(validator[e]) ) {
+                            matches.push(colValues[i]);
+                            console.log("Matches" + matches);//[DEBUG MODE] delete after development
+                            console.log("Validator" + validator);//[DEBUG MODE] delete after development
+                        }
+                    }
+                }
+            }
+
+            if(matches.sort().join(',') == validator.sort().join(',')){
+                console.log('same members');//[DEBUG MODE] delete after developments
+                valid = true;
+            }
+
+            if(valid === true) {
                 var parent = currentCol.parent();
                 animateCells(parent);
             }
         }
 
-        //checks if the fullfilled column is valid
+
+        //checks it the fullfilled square is valid
         function checkSquare(squareNumber) {
             var square = $("input[square='"+squareNumber+"']");
-            var correctValue = 45;
-            var soma = 0;
+            var squareValues = [];
+            var validator = [1,2,3,4,5,6,7,8,9];
+            var matches =[];
+            var valid =  false;
 
             square.each(function () {
                 if($(this).val() != '') {
-                    soma += parseInt($(this).val());
+                    squareValues.push($(this).val());
                 }
             });
 
-            if(soma === correctValue) {
+            console.log("square Values" + squareValues); //[DEBUG MODE] delete after development
+
+            if(squareValues.length == 9) {
+                for ( var i = 0; i < squareValues.length; i++ ) {
+                    console.log("square value" + squareValues[i]);//[DEBUG MODE] delete after development
+                    for ( var e = 0; e < validator.length; e++ ) {
+                        console.log("validator value" + validator[e]);//[DEBUG MODE] delete after development
+                        if ( parseInt(squareValues[i]) === parseInt(validator[e]) ) {
+                            matches.push(squareValues[i]);
+                            console.log("Matches" + matches);//[DEBUG MODE] delete after development
+                            console.log("Validator" + validator);//[DEBUG MODE] delete after development
+                        }
+                    }
+                }
+            }
+
+            if(matches.sort().join(',') == validator.sort().join(',')){
+                console.log('same members');//[DEBUG MODE] delete after developments
+                valid = true;
+            }
+
+            if(valid === true) {
                 var parent = square.parent();
                 animateCells(parent);
             }
@@ -289,7 +354,7 @@
 
             conflictCell.addClass('conflict');
             setTimeout(function () {
-                    conflictCell.removeClass('conflict');
+                conflictCell.removeClass('conflict');
             },5000);
         }
 
