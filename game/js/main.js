@@ -136,7 +136,6 @@
             var currentLine = $("input[data-line='"+lineNumber+"']");
             var lineValues = [];
             var validator = [1,2,3,4,5,6,7,8,9];
-            var matches =[];
             var valid =  false;
 
             currentLine.each(function () {
@@ -148,23 +147,10 @@
             console.log("Line Values" + lineValues); //[DEBUG MODE] delete after development
 
             if(lineValues.length == 9) {
-                for ( var i = 0; i < lineValues.length; i++ ) {
-                    console.log("line value" + lineValues[i]);//[DEBUG MODE] delete after development
-                    for ( var e = 0; e < validator.length; e++ ) {
-                        console.log("validator value" + validator[e]);//[DEBUG MODE] delete after development
-                        if ( parseInt(lineValues[i]) === parseInt(validator[e]) ) {
-                            matches.push(lineValues[i]);
-                            console.log("Matches" + matches);//[DEBUG MODE] delete after development
-                            console.log("Validator" + validator);//[DEBUG MODE] delete after development
-                        }
-                    }
+                if(lineValues.sort().join(',') == validator.sort().join(',')){
+                    console.log('same members');//[DEBUG MODE] delete after development
+                    valid = true;
                 }
-            }
-
-
-            if(matches.sort().join(',') == validator.sort().join(',')){
-                console.log('same members');//[DEBUG MODE] delete after development
-                valid = true;
             }
 
             if(valid === true) {
@@ -178,7 +164,6 @@
             var currentCol = $("input[data-column='"+colNumber+"']");
             var colValues = [];
             var validator = [1,2,3,4,5,6,7,8,9];
-            var matches =[];
             var valid =  false;
 
             currentCol.each(function () {
@@ -190,22 +175,10 @@
             console.log("col Values" + colValues); //[DEBUG MODE] delete after development
 
             if(colValues.length == 9) {
-                for ( var i = 0; i < colValues.length; i++ ) {
-                    console.log("line value" + colValues[i]);//[DEBUG MODE] delete after development
-                    for ( var e = 0; e < validator.length; e++ ) {
-                        console.log("validator value" + validator[e]);//[DEBUG MODE] delete after development
-                        if ( parseInt(colValues[i]) === parseInt(validator[e]) ) {
-                            matches.push(colValues[i]);
-                            console.log("Matches" + matches);//[DEBUG MODE] delete after development
-                            console.log("Validator" + validator);//[DEBUG MODE] delete after development
-                        }
-                    }
+                if(colValues.sort().join(',') == validator.sort().join(',')){
+                    console.log('same members');//[DEBUG MODE] delete after developments
+                    valid = true;
                 }
-            }
-
-            if(matches.sort().join(',') == validator.sort().join(',')){
-                console.log('same members');//[DEBUG MODE] delete after developments
-                valid = true;
             }
 
             if(valid === true) {
@@ -220,7 +193,6 @@
             var square = $("input[square='"+squareNumber+"']");
             var squareValues = [];
             var validator = [1,2,3,4,5,6,7,8,9];
-            var matches =[];
             var valid =  false;
 
             square.each(function () {
@@ -232,22 +204,10 @@
             console.log("square Values" + squareValues); //[DEBUG MODE] delete after development
 
             if(squareValues.length == 9) {
-                for ( var i = 0; i < squareValues.length; i++ ) {
-                    console.log("square value" + squareValues[i]);//[DEBUG MODE] delete after development
-                    for ( var e = 0; e < validator.length; e++ ) {
-                        console.log("validator value" + validator[e]);//[DEBUG MODE] delete after development
-                        if ( parseInt(squareValues[i]) === parseInt(validator[e]) ) {
-                            matches.push(squareValues[i]);
-                            console.log("Matches" + matches);//[DEBUG MODE] delete after development
-                            console.log("Validator" + validator);//[DEBUG MODE] delete after development
-                        }
-                    }
+                if(squareValues.sort().join(',') == validator.sort().join(',')){
+                    console.log('same members');//[DEBUG MODE] delete after developments
+                    valid = true;
                 }
-            }
-
-            if(matches.sort().join(',') == validator.sort().join(',')){
-                console.log('same members');//[DEBUG MODE] delete after developments
-                valid = true;
             }
 
             if(valid === true) {
